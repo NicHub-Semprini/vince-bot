@@ -17,7 +17,7 @@ public class VinceController {
 	}
 	
 	@PostMapping("/f29ca76cdbaec82d5819ce9f4a52773f/updates")
-	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
+	public ResponseEntity<String> updatingWebHook(/*@RequestBody Update update*/){
 		return ResponseEntity.ok("messaggio ricevuto :)");
 	}
 
