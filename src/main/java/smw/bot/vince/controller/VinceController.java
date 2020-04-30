@@ -16,7 +16,7 @@ public class VinceController {
 		return ResponseEntity.ok("coming soon");
 	}
 	
-	@PostMapping("/<md5-del-token>/updates")
+	@PostMapping("/f29ca76cdbaec82d5819ce9f4a52773f/updates")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		return ResponseEntity.ok("messaggio ricevuto :)");
 	}
