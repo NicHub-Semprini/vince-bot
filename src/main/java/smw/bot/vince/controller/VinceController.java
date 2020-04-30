@@ -16,7 +16,7 @@ public class VinceController {
 		return ResponseEntity.ok("coming soon");
 	}
 	
-	@PostMapping("/f29ca76cdbaec82d5819ce9f4a52773f/updates")
+	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json")
 	public ResponseEntity<String> updatingWebHook(/*@RequestBody Update update*/){
 		return ResponseEntity.ok("messaggio ricevuto :)");
 	}
