@@ -1,10 +1,10 @@
 package smw.bot.vince.controller;
 
-import java.nio.charset.StandardCharsets;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,8 +38,10 @@ public class VinceController {
 	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		this.logger.info("Ricevuto: {}", update);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.TEXT_PLAIN);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
-		return restTemplate.postForEntity(builder.toUriString(), null, String.class);
+		return restTemplate.postForEntity(builder.toUriString(), headers, String.class);
 	}
 
 }
