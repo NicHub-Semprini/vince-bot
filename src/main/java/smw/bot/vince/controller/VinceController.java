@@ -35,7 +35,7 @@ public class VinceController {
 		return ResponseEntity.ok("coming soon");
 	}
 	
-	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json")
+	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		this.logger.info("Ricevuto: {}", update);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
