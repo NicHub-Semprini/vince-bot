@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import smw.bot.vince.model.Update;
 
@@ -40,9 +39,13 @@ public class VinceController {
 		this.logger.info("Ricevuto: {}", update);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
-		String tmp = url+"?chat_id="+update.getMessage().getChat().getId()+"&text="+update.getMessage().getText();
-		return restTemplate.postForEntity(tmp, headers, String.class);
+		String uri = buildUri(update.getMessage().getChat().getId(), update.getMessage().getText());
+		return restTemplate.postForEntity(uri, headers, String.class);
+	}
+	
+	private String buildUri(Long chatId, String text) {
+		StringBuilder sb = new StringBuilder(url).append("?").append("chat_id=").append(chatId).append("&").append("text=").append(text);
+		return sb.toString();
 	}
 
 }
