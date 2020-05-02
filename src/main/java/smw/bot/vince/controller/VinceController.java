@@ -36,11 +36,13 @@ public class VinceController {
 	
 	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
-		this.logger.info("Ricevuto: {}", update);
+		this.logger.info("RICEVUTO: {}", update);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
 		String uri = buildUri(update.getMessage().getChat().getId(), update.getMessage().getText());
-		return restTemplate.postForEntity(uri, headers, String.class);
+		ResponseEntity<String> response = restTemplate.postForEntity(uri, headers, String.class); 
+		this.logger.info("INVIATO: {}", response);
+		return response;
 	}
 	
 	private String buildUri(Long chatId, String text) {
