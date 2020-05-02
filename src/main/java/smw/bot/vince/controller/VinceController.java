@@ -2,6 +2,8 @@ package smw.bot.vince.controller;
 
 import java.nio.charset.StandardCharsets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +20,14 @@ public class VinceController {
 	
 	private final RestTemplate restTemplate;
 	
+	private final Logger logger;
+	
 	private final String url = "https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage";
 	
 	@Autowired
 	public VinceController(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
+		this.logger = LoggerFactory.getLogger(this.getClass());
 	}
 	
 	@GetMapping("/hello")
@@ -32,6 +37,7 @@ public class VinceController {
 	
 	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
+		this.logger.info("Ricevuto: {}", update);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
 		return restTemplate.postForEntity(builder.build().encode(StandardCharsets.UTF_8).toUriString(), null, String.class);
 	}
