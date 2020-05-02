@@ -41,7 +41,8 @@ public class VinceController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
-		return restTemplate.postForEntity(builder.toUriString(), headers, String.class);
+		String tmp = url+"?chat_id="+update.getMessage().getChat().getId()+"&text="+update.getMessage().getText();
+		return restTemplate.postForEntity(tmp, headers, String.class);
 	}
 
 }
