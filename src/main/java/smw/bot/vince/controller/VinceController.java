@@ -39,7 +39,7 @@ public class VinceController {
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		this.logger.info("Ricevuto: {}", update);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("chat_id", update.getMessage().getChat().getId()).queryParam("text", update.getMessage().getText());
-		return restTemplate.postForEntity(builder.build().encode(StandardCharsets.UTF_8).toUriString(), null, String.class);
+		return restTemplate.postForEntity(builder.toUriString(), null, String.class);
 	}
 
 }
