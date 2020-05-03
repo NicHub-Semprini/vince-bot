@@ -10,4 +10,20 @@ public class VinceApplication {
 		SpringApplication.run(VinceApplication.class, args);
 	}
 
+	private class KeepAliveThread implements Runnable {
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					Thread.sleep(1500000);
+					System.out.println("SVEGLIA!");
+				} catch (InterruptedException e) {
+					continue;
+				}
+			}
+		}
+
+	}
+
 }
