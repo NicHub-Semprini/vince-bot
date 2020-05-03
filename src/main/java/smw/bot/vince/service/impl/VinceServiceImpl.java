@@ -38,7 +38,7 @@ public class VinceServiceImpl implements VinceService {
 			case SET_SESSIONE_COMMAND:
 				this.logger.info("SET_SESSIONE SERVICE");
 				try {
-					LocalDateTime data = (LocalDateTime) formatterIn.parse(words[1] + " " + words[2]);
+					LocalDateTime data = LocalDateTime.from(formatterIn.parse(words[1] + " " + words[2]));
 					setSessione(data);
 					return formatterOut.format(nextSession);
 				} catch(DateTimeParseException e) {
