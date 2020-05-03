@@ -51,7 +51,7 @@ public class VinceServiceImpl implements VinceService {
 		String text = update.getMessage().getText();
 		String responseText = null;
 		this.logger.info("TEXT: {}", text);
-		if(Strings.isBlank(text) && hasJoinedGroup(update.getMessage())) {
+		if(!Strings.isBlank(text) && hasJoinedGroup(update.getMessage())) {
 			this.logger.info("JOINED_GROUP SERVICE");
 			responseText = HELLO_MESSAGE; 
 		} else {
