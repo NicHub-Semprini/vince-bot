@@ -3,6 +3,7 @@ package smw.bot.vince.service.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,8 @@ public class VinceServiceImpl implements VinceService {
 
 	public VinceServiceImpl() {
 		this.logger = LoggerFactory.getLogger(this.getClass());
-		this.formatterIn = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_IN);
-		this.formatterOut = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_OUT);
+		this.formatterIn = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_IN, Locale.ITALIAN);
+		this.formatterOut = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_OUT, Locale.ITALIAN);
 	}
 	
 	@Override
