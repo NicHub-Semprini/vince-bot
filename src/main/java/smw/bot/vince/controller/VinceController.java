@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import smw.bot.vince.model.Update;
+import smw.bot.vince.service.VinceService;
 
 @RestController
 public class VinceController {
 	
-	private final RestTemplate restTemplate;
-	
-	private final Logger logger;
-	
+	private final VinceService service;
+	private final RestTemplate restTemplate;	
+	private final Logger logger;	
 	private final String url = "https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage";
 	
 	@Autowired
-	public VinceController(RestTemplate restTemplate) {
+	public VinceController(VinceService service, RestTemplate restTemplate) {
+		this.service = service;
 		this.restTemplate = restTemplate;
 		this.logger = LoggerFactory.getLogger(this.getClass());
 	}
@@ -37,9 +38,10 @@ public class VinceController {
 	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		this.logger.info("RICEVUTO: {}", update);
+		String text = service.parseCommand(update);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
-		String uri = buildUri(update.getMessage().getChat().getId(), update.getMessage().getText());
+		String uri = buildUri(update.getMessage().getChat().getId(), text);
 		ResponseEntity<String> response = restTemplate.postForEntity(uri, headers, String.class); 
 		this.logger.info("INVIATO: {}", response);
 		return response;
