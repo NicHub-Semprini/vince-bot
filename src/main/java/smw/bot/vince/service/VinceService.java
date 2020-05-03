@@ -1,9 +1,11 @@
 package smw.bot.vince.service;
 
+import org.springframework.http.ResponseEntity;
+
 import smw.bot.vince.model.Update;
 
 public interface VinceService {
 	
-	String parseCommand(Update update);
+	ResponseEntity<String> acceptUpdate(Update update);
 
 }
