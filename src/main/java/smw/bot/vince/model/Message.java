@@ -17,9 +17,10 @@ public class Message {
     private final Chat chat;
     private final String text; // optional
     private final MessageEntity[] entities; // optional
+    private final User[] new_chat_members;
     
     public Message() {
-		this(0, new User(), 0, new Chat(), "", null);
+		this(0, new User(), 0, new Chat(), "", null, null);
     }
     
 }
