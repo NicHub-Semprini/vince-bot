@@ -30,7 +30,7 @@ public class VinceServiceImpl implements VinceService {
 	
 	private static LocalDateTime nextSession;
 	
-	private final static String USERNAME = "@VinceEarlLiamBot";
+	private final static String USERNAME = "VinceEarlLiamBot";
 	private final static String url = "https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage";
 	private final static String HELLO_MESSAGE = "Signore e signori, sono qui per divertire!";
 	private final static String DATE_TIME_FORMAT_IN= "dd/MM/yyyy HH:mm";
@@ -57,7 +57,7 @@ public class VinceServiceImpl implements VinceService {
 		} else {
 			responseText = parseCommand(text);
 		}
-		if(responseText != null)
+		if(!Strings.isBlank(responseText))
 			return reply(update.getMessage().getChat().getId(), responseText);
 		return ResponseEntity.ok(null);
 	}
