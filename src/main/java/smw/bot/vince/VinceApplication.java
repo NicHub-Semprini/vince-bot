@@ -11,7 +11,7 @@ public class VinceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VinceApplication.class, args);
 		KeepAliveThread kat = new KeepAliveThread();
-		kat.run();
+	    kat.start();
 	}
 	
 }
