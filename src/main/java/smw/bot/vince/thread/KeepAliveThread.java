@@ -15,7 +15,7 @@ public class KeepAliveThread extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1500000); // 25 minuti
 				System.out.println("SVEGLIA!");
 				System.out.println(restTemplate.getForObject(url, String.class));
 			} catch (InterruptedException e) {
