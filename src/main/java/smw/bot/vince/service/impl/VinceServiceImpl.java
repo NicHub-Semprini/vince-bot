@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,10 @@ public class VinceServiceImpl implements VinceService {
 	public String parseCommand(Update update) {
 		String text = update.getMessage().getText();
 		this.logger.info("TEXT: {}", text);
+		if(Strings.isBlank(text)) {
+			this.logger.info("JOINED_GROUP SERVICE");
+			return "Signore e signori, sono qui per divertire!";
+		}
 		String[] words = text.split(" ");
 		switch(words[0]) {
 			case SET_SESSIONE_COMMAND:
