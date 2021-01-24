@@ -31,7 +31,7 @@ public class VinceServiceImpl implements VinceService {
 	private static LocalDateTime nextSession;
 	
 	private final static String USERNAME = "VinceEarlLiamBot";
-	private final static String url = "https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage";
+	private final static String URL = "https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage";
 	private final static String HELLO_MESSAGE = "Signore e signori, sono qui per divertire!";
 	private final static String DATE_TIME_FORMAT_IN= "dd/MM/yyyy HH:mm";
 	private final static String DATE_TIME_FORMAT_OUT= "'Prossima sessione:' EEEE d MMMM 'ore' HH:mm";
@@ -71,7 +71,7 @@ public class VinceServiceImpl implements VinceService {
 					LocalDateTime data = LocalDateTime.from(formatterIn.parse(words[1] + " " + words[2]));
 					setSessione(data);
 					return formatterOut.format(nextSession);
-				} catch(DateTimeParseException e) {
+				} catch(Exception e) {
 					logger.error(e.getMessage());
 					return createErrorResponse(SET_SESSIONE_COMMAND, new String[] {DATE_TIME_FORMAT_IN});
 				}
@@ -94,11 +94,11 @@ public class VinceServiceImpl implements VinceService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
 		String uri = buildUri(chatId, text);
-		 return restTemplate.postForEntity(uri, headers, String.class);
+		return restTemplate.postForEntity(uri, headers, String.class);
 	}
 	
 	private String buildUri(Long chatId, String text) {
-		StringBuilder sb = new StringBuilder(url).append("?").append("chat_id=").append(chatId).append("&").append("text=").append(text);
+		StringBuilder sb = new StringBuilder(URL).append("?").append("chat_id=").append(chatId).append("&").append("text=").append(text);
 		return sb.toString();
 	}
 	
