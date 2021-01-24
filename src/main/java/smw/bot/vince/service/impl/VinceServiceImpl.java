@@ -22,7 +22,7 @@ import smw.bot.vince.service.VinceService;
 @Service
 public class VinceServiceImpl implements VinceService {
 	
-	private final Logger logger;
+	private final Logger log;
 	private final DateTimeFormatter formatterIn;
 	private final DateTimeFormatter formatterOut;
 	private final RestTemplate restTemplate;
@@ -40,7 +40,7 @@ public class VinceServiceImpl implements VinceService {
 	@Autowired
 	public VinceServiceImpl(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
-		this.logger = LoggerFactory.getLogger(this.getClass());
+		this.log = LoggerFactory.getLogger(this.getClass());
 		this.formatterIn = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_IN, Locale.ITALIAN);
 		this.formatterOut = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_OUT, Locale.ITALIAN);
 	}
@@ -49,9 +49,9 @@ public class VinceServiceImpl implements VinceService {
 	public ResponseEntity<String> acceptUpdate(Update update){
 		String text = update.getMessage().getText();
 		String responseText = null;
-		this.logger.info("TEXT: {}", text);
+		this.log.info("TEXT: {}", text);
 		if(Strings.isBlank(text) && hasJoinedGroup(update.getMessage())) {
-			this.logger.info("JOINED_GROUP SERVICE");
+			this.log.info("JOINED_GROUP SERVICE");
 			responseText = HELLO_MESSAGE; 
 		} else {
 			responseText = parseCommand(text);
@@ -65,22 +65,22 @@ public class VinceServiceImpl implements VinceService {
 		String[] words = text.split(" ");
 		switch(words[0]) {
 			case SET_SESSIONE_COMMAND:
-				this.logger.info("SET_SESSIONE SERVICE");
+				this.log.info("SET_SESSIONE SERVICE");
 				try {
 					LocalDateTime data = LocalDateTime.from(formatterIn.parse(words[1] + " " + words[2]));
 					setSessione(data);
 					return formatterOut.format(nextSession);
 				} catch(Exception e) {
-					logger.error(e.getMessage());
+					log.error(e.getMessage());
 					return createErrorResponse(SET_SESSIONE_COMMAND, new String[] {DATE_TIME_FORMAT_IN});
 				}
 			case GET_SESSIONE_COMMAND:
-				this.logger.info("GET_SESSIONE SERVICE");
+				this.log.info("GET_SESSIONE SERVICE");
 				if(nextSession == null)
 					return "Prossima sessione: non settata";
 				return formatterOut.format(nextSession);
 			default:
-				this.logger.info("ECHO SERVICE");
+				this.log.info("ECHO SERVICE");
 				return text;
 		}
 	}
