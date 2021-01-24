@@ -67,38 +67,38 @@ public class VinceServiceImpl implements VinceService {
 	private String parseCommand(String text) {
 		String[] words = text.split(" ");
 		String result;
-		switch(words[0]) {
-			case SET_SESSIONE_COMMAND:
-				log.info("SET_SESSIONE SERVICE");
-				try {
-					LocalDateTime nextSessionDate = LocalDateTime.from(formatterIn.parse(words[1] + " " + words[2]));
-					NextSessionMeeting nextSessionMeeting = nextSessionMeetingRepository.findFirst().get();
-					nextSessionMeeting.setNextMeeting(nextSessionDate);
-					nextSessionMeeting = nextSessionMeetingRepository.save(nextSessionMeeting);
-					result = formatterOut.format(nextSessionMeeting.getNextMeeting());
-					break;
-				} catch(Exception e) {
-					log.error(e.getMessage());
-					result = createErrorResponse(SET_SESSIONE_COMMAND, new String[] {DATE_TIME_FORMAT_IN});
-				}
-			case GET_SESSIONE_COMMAND:
-				log.info("GET_SESSIONE SERVICE");
-				try {
+		switch (words[0]) {
+		case SET_SESSIONE_COMMAND:
+			log.info("SET_SESSIONE SERVICE");
+			try {
+				LocalDateTime nextSessionDate = LocalDateTime.from(formatterIn.parse(words[1] + " " + words[2]));
 				NextSessionMeeting nextSessionMeeting = nextSessionMeetingRepository.findFirst().get();
-				if(nextSessionMeeting.getNextMeeting().isBefore(LocalDateTime.now(ZoneId.of("Europe/Rome")))){
+				nextSessionMeeting.setNextMeeting(nextSessionDate);
+				nextSessionMeeting = nextSessionMeetingRepository.save(nextSessionMeeting);
+				result = formatterOut.format(nextSessionMeeting.getNextMeeting());
+			} catch (Exception e) {
+				log.error(e.toString());
+				result = createErrorResponse(SET_SESSIONE_COMMAND, new String[] { DATE_TIME_FORMAT_IN });
+			}
+			break;
+		case GET_SESSIONE_COMMAND:
+			log.info("GET_SESSIONE SERVICE");
+			try {
+				NextSessionMeeting nextSessionMeeting = nextSessionMeetingRepository.findFirst().get();
+				if (nextSessionMeeting.getNextMeeting().isBefore(LocalDateTime.now(ZoneId.of("Europe/Rome")))) {
 					result = "Prossima sessione: non settata";
 				} else {
 					result = formatterOut.format(nextSessionMeeting.getNextMeeting());
 				}
-				} catch(Exception e) {
-					log.error(e.getMessage());
-					result = "Prossima sessione: non settata";
-				} 
-				break;
-			default:
-				log.info("ECHO SERVICE");
-				result = text;
-				break;
+			} catch (Exception e) {
+				log.error(e.toString());
+				result = "Prossima sessione: non settata";
+			}
+			break;
+		default:
+			log.info("ECHO SERVICE");
+			result = text;
+			break;
 		}
 		return result;
 	}
