@@ -2,7 +2,6 @@ package smw.bot.vince.service.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 import org.apache.logging.log4j.util.Strings;
