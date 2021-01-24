@@ -24,7 +24,7 @@ public class VinceController {
 		this.logger = LoggerFactory.getLogger(this.getClass());
 	}
 	
-	@GetMapping("/hello")
+	@GetMapping("/wake-up")
 	public ResponseEntity<String> getNextSession(){
 		return ResponseEntity.ok("coming soon");
 	}
