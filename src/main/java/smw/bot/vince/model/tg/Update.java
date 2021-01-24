@@ -1,4 +1,4 @@
-package smw.bot.vince.model;
+package smw.bot.vince.model.tg;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

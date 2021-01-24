@@ -2,7 +2,7 @@ package smw.bot.vince.service;
 
 import org.springframework.http.ResponseEntity;
 
-import smw.bot.vince.model.Update;
+import smw.bot.vince.model.tg.Update;
 
 public interface VinceService {
 	

@@ -1,4 +1,4 @@
-package smw.bot.vince.model;
+package smw.bot.vince.model.tg;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,13 +9,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
-public class Chat {
+public class MessageEntity {
 	
-    private final Long id;
     private final String type;
+    private final Integer offset;
+    private final Integer length;
     
-    public Chat() {
-    	this(0L, "");
+    public MessageEntity() {
+    	this("", 0, 0);
     }
-
 }

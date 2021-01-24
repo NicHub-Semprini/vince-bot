@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import smw.bot.vince.model.Update;
+import smw.bot.vince.model.tg.Update;
 import smw.bot.vince.service.VinceService;
 
 @RestController

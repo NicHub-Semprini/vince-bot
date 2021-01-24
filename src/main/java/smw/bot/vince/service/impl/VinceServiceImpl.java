@@ -14,9 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import smw.bot.vince.model.Message;
-import smw.bot.vince.model.Update;
-import smw.bot.vince.model.User;
+import smw.bot.vince.model.tg.Message;
+import smw.bot.vince.model.tg.Update;
+import smw.bot.vince.model.tg.User;
 import smw.bot.vince.service.VinceService;
 
 @Service
