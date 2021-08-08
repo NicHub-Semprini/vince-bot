@@ -18,4 +18,4 @@ Private commands are reserved to Game Master and so they aren't declared in Tele
 
 ### Public commands
 
- - /session → get next game session or a [default message](https://translate.google.it/?hl=it&sl=it&tl=en&text=Prossima%20sessione%3A%20non%20settata&op=translate) if the scheduled date is before current one 
+ - /sessione → get next game session or a [default message](https://translate.google.it/?hl=it&sl=it&tl=en&text=Prossima%20sessione%3A%20non%20settata&op=translate) if the scheduled date is expired or unset 
