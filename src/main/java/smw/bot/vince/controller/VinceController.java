@@ -1,5 +1,7 @@
 package smw.bot.vince.controller;
 
+import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +27,14 @@ public class VinceController {
 	}
 	
 	@GetMapping("/wake-up")
-	public ResponseEntity<String> getNextSession(){
-		return ResponseEntity.ok("coming soon");
+	public ResponseEntity<String> keepAlive(){
+		return ResponseEntity.ok(LocalDateTime.now().toString());
 	}
 	
 	@PostMapping(path = "/f29ca76cdbaec82d5819ce9f4a52773f/updates", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> updatingWebHook(@RequestBody Update update){
 		this.logger.info("RICEVUTO: {}", update);
-		ResponseEntity<String> response = service.acceptUpdate(update); 
+		ResponseEntity<String> response = ResponseEntity.ok(this.service.acceptUpdate(update)); 
 		this.logger.info("INVIATO: {}", response);
 		return response;
 	}
