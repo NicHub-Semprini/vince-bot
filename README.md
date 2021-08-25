@@ -1,7 +1,7 @@
 # Vince Earl Liam Bot
 
 Manage your role games easy with the help of the best right-hand ~~man~~ bot.
-Vince Earl Liam handle boring tasks like tracking of next scheduled game as weel as remember to your players what THEY have done in previous sessions.
+Vince Earl Liam handles boring tasks like tracking of next scheduled game as well as remember to your players what THEY have done in previous sessions.
 He is inspired to [Niccolò Machiavelli](https://en.wikipedia.org/wiki/Niccol%C3%B2_Machiavelli) and so ... why don't make him speak in Italian only? XD
 
 ## Pointments
