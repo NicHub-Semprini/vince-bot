@@ -6,7 +6,7 @@ He is inspired to [Niccolò Machiavelli](https://en.wikipedia.org/wiki/Niccol%C3
 
 ## Pointments
 
-**telegram username:** @VinceEarlLiamBot
+**telegram username:** @VinceEarlLiamBot  
 **message endpoint:** https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage
 
 ## Available commands
