@@ -1,13 +1,13 @@
 # Vince Earl Liam Bot
 
-Manage your role games easy with the help of the best right-hand ~~man~~ bot.
-Vince Earl Liam handles boring tasks like tracking of next scheduled game as well as remember to your players what THEY have done in previous sessions.
+Manage your role games easy with the help of the best right-hand ~~man~~ bot.  
+Vince Earl Liam handles boring tasks like tracking of next scheduled game as well as remember to your players what THEY have done in previous sessions.  
 He is inspired to [Niccolò Machiavelli](https://en.wikipedia.org/wiki/Niccol%C3%B2_Machiavelli) and so ... why don't make him speak in Italian only? XD
 
 ## Pointments
 
 **telegram username:** @VinceEarlLiamBot  
-**message endpoint:** https://api.telegram.org/bot1001648084:AAHPcuvoo8gN-XAskF3jtsbBTRTQB2GP3x8/sendMessage
+**message endpoint:** https://master-manager.herokuapp.com/f29ca76cdbaec82d5819ce9f4a52773f/updates
 
 ## Available commands
 Private commands are reserved to Game Master and so they aren't declared in Telegram chat.
