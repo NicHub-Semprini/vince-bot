@@ -1,1 +1,1 @@
-web: java -jar target/quarkus-app/*.jar
+container:release web --app master-manager
