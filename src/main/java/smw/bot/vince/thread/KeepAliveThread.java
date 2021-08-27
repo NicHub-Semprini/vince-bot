@@ -1,27 +1,32 @@
 package smw.bot.vince.thread;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import io.quarkus.runtime.Startup;
+import smw.bot.vince.client.SelfRestClient;
+
+@Startup
 public class KeepAliveThread extends Thread {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
-	private final RestTemplate restTemplate;
-	private final static String URL = "https://master-manager.herokuapp.com/wake-up";
+	private final SelfRestClient restClient;
 	
-	public KeepAliveThread() {
-		this.restTemplate = new RestTemplate();
+	@Autowired
+	public KeepAliveThread(@RestClient SelfRestClient restClient) {
+		this.restClient = restClient;
 	}
-
+	
 	@Override
 	public void run() {
 		log.info(getClass().getSimpleName() + " started");
 		while (true) {
 			try {
-				Thread.sleep(1740000); // 29 minuti
+				Thread.sleep(1710000); // 28,5 minuti
 				log.info("SVEGLIA!");
-				log.info(restTemplate.getForObject(URL, String.class));
+				log.info(restClient.keepAlive());
 			} catch (InterruptedException e) {
 				continue;
 			}
