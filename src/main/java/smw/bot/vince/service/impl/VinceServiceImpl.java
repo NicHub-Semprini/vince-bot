@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import smw.bot.vince.client.TelegramRestClient;
 import smw.bot.vince.model.db.NextSessionMeeting;
 import smw.bot.vince.model.tg.Message;
+import smw.bot.vince.model.tg.ResponseMessage;
 import smw.bot.vince.model.tg.Update;
 import smw.bot.vince.model.tg.User;
 import smw.bot.vince.repository.NextSessionMeetingRepository;
@@ -56,7 +57,9 @@ public class VinceServiceImpl implements VinceService {
 			responseText = parseCommand(text);
 		}
 		if (!isBlank(responseText)) {
-			return restClient.sendMessage(update.getMessage().getChat().getId(), responseText);
+			ResponseMessage response = new ResponseMessage(update.getMessage().getChat().getId(), responseText);
+			log.info("Reply with: {}", response);
+			return restClient.sendMessage(response);
 		}
 		return null;
 	}
