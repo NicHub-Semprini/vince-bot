@@ -1,4 +1,4 @@
-# Vince Earl Liam Bot
+# Master Manager Bot
 
 Manage your role games easy with the help of the best right-hand ~~man~~ bot.  
 Vince Earl Liam handles boring tasks like tracking of next scheduled game as well as remember to your players what THEY have done in previous sessions.  
