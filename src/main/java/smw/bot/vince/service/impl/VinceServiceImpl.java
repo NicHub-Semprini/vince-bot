@@ -5,8 +5,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import javax.ws.rs.core.Response;
-
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,9 +59,7 @@ public class VinceServiceImpl implements VinceService {
 		if (!isBlank(responseText)) {
 			ResponseMessage response = new ResponseMessage(update.getMessage().getChat().getId(), responseText);
 			log.info("Reply with: {}", response);
-			Response telegramResponse = restClient.sendMessage(response);
-			log.info("Received from telegram: {} {}", telegramResponse.getStatusInfo(), telegramResponse.getEntity());
-			return telegramResponse.getEntity().toString();			
+			return restClient.sendMessage(response);
 		}
 		return null;
 	}
